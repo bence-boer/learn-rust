@@ -1,6 +1,7 @@
 use std::fmt;
 
-enum TerminalBackgroundColor {
+#[derive(Debug, Clone, Copy)]
+pub enum TerminalBackgroundColor {
     Black,
     Red,
     Green,

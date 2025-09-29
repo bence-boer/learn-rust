@@ -1,6 +1,9 @@
 use std::fmt;
 
-enum TerminalControlSequence {
+use crate::renderer::terminal_background_colors::TerminalBackgroundColor;
+use crate::renderer::terminal_foreground_colors::TerminalForegroundColor;
+
+pub enum TerminalControlSequence {
     MoveCursorToHome,
     MoveCursorToPosition(u16, u16),
     MoveCursorUpBy(u16),
