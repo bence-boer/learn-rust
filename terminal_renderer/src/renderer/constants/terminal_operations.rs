@@ -1,11 +1,10 @@
 use std::fmt;
 
-use crate::renderer::terminal_background_colors::TerminalBackgroundColor;
-use crate::renderer::terminal_foreground_colors::TerminalForegroundColor;
+use crate::renderer::{Coordinate, TerminalBackgroundColor, TerminalForegroundColor};
 
 pub enum TerminalControlSequence {
     MoveCursorToHome,
-    MoveCursorToPosition(u16, u16),
+    MoveCursorToPosition(Coordinate),
     MoveCursorUpBy(u16),
     MoveCursorDownBy(u16),
     MoveCursorForwardBy(u16),
@@ -44,8 +43,8 @@ impl fmt::Display for TerminalControlSequence {
             TerminalControlSequence::MoveCursorToHome => {
                 write!(f, "\x1B[H")
             }
-            TerminalControlSequence::MoveCursorToPosition(row, col) => {
-                write!(f, "\x1B[{};{}H", row, col)
+            TerminalControlSequence::MoveCursorToPosition(position) => {
+                write!(f, "\x1B[{};{}H", position.y, position.x)
             }
             TerminalControlSequence::MoveCursorUpBy(n) => {
                 write!(f, "\x1B[{}A", n)
